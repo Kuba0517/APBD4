@@ -6,13 +6,11 @@ namespace LegacyApp
     {
         public bool AddUser(string firstName, string lastName, string email, DateTime dateOfBirth, int clientId)
         {
-            
-            if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName))
+            if (!CheckNameOrLastName(firstName) || !CheckNameOrLastName(lastName))
             {
                 return false;
             }
-
-
+            
             if (!CheckEmail(email))
             {
                 return false;
@@ -86,5 +84,11 @@ namespace LegacyApp
 
             return false;
         }
+
+        private bool CheckNameOrLastName(string name)
+        {
+            return !string.IsNullOrEmpty(name);
+        }
+        
     }
 }
