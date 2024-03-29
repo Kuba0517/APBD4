@@ -13,7 +13,7 @@ namespace LegacyApp
             }
 
 
-            if (!email.Contains("@") && !email.Contains("."))
+            if (!CheckEmail(email))
             {
                 return false;
             }
@@ -75,6 +75,16 @@ namespace LegacyApp
             if (now.Month < dateOfBirth.Month || (now.Month == dateOfBirth.Month && now.Day < dateOfBirth.Day)) age--;
 
             return age;
+        }
+
+        private bool CheckEmail(string email)
+        {
+            if (email.Contains("@") && email.Contains("."))
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }
