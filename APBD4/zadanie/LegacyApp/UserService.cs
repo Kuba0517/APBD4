@@ -25,14 +25,8 @@ namespace LegacyApp
             var clientRepository = new ClientRepository();
             var client = clientRepository.GetById(clientId);
 
-            var user = new User
-            {
-                Client = client,
-                DateOfBirth = dateOfBirth,
-                EmailAddress = email,
-                FirstName = firstName,
-                LastName = lastName
-            };
+            var user = CreateNewUser(client, dateOfBirth, email, firstName, lastName);
+
 
             if (client.Type == "VeryImportantClient")
             {
@@ -89,6 +83,20 @@ namespace LegacyApp
         {
             return !string.IsNullOrEmpty(name);
         }
+
+        private User CreateNewUser(Client client, DateTime dateOfBirth, string emailAddress, string firstName,
+            string lastName)
+        {
+            return new User
+            {
+                Client = client,
+                DateOfBirth = dateOfBirth,
+                EmailAddress = emailAddress,
+                FirstName = firstName,
+                LastName = lastName
+            };
+        }
+        
         
     }
 }
